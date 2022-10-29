@@ -45,7 +45,7 @@ number of times its (a) domain, (b) subdomain, (c) youtube channel, (d) facebook
  
 |input|count|normalized ur|domain|...|youtube channel link|...|domain count|youtube channel count|facebook group count|twitter account count|
 |---|---|---|---|---|---|---|---|---|---|---|
-|https:// youtube.com /video|3|youtube.com/video|youtube.com|...|youtube.com/channel|...|128096|73|  |  |
+|https:// youtube.com /videoABC|3|youtube.com/videoABC|youtube.com|...|youtube.com/channelXYZ|...|128096|73|  |  |
 
 In the enriched dataset, every unique URL has a `count` meaning the number of times that URL appeared in the original data, and now it has the enriched 
 count of how many times certain elements of its metadata were present in the dataset. It lacks a meaningful relationship between these two data.
