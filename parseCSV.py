@@ -35,7 +35,7 @@ def parse_csv(csv_file:str, length:str, outfile_name:str):
     return Counters
 
 
-def analyse_row(row, counters):
+def analyse_row(row:dict, counters:list):
 
     # Extract data from the row
     count = row.get("count")
@@ -50,17 +50,21 @@ def analyse_row(row, counters):
     [update_sum(getattr(counters, field[0]), field[1], count) for field in fields_for_sum_of_all_tweets]
 
 
-def enrich_row(row, counters, writer):
+def enrich_row(row:dict, counters:list, writer):
 
+    # Extract relevant data from a row in the input file
     domain, subdomain, youtube_channel, facebook_group, twitter_user = get_row_data(row)
 
+    # Determine the fields to be added to the same row in the enriched out file
     EnrichedData = namedtuple("EnrichedData", ["value", "counter", "header"])
     encriched_fields = [EnrichedData(domain, counters.domain, "domain count"), EnrichedData(subdomain, counters.subdomain, "subdomain count"), EnrichedData(youtube_channel, counters.youtube_channel, "youtube channel count"), EnrichedData(facebook_group, counters.facebook_group, "facebook group count"), EnrichedData(twitter_user, counters.twitter_user, "twitter account count")]
 
+    # Iterate through all the fields and update the row with enriched data when necessary
     [row.update({field.header: field.counter.get(field.value)}) 
     for field in encriched_fields 
     if field.value and field.value in field.counter.keys()]
 
+    # Write the newly enriched row to the out file
     writer.writerow(row)
 
 
@@ -70,21 +74,21 @@ def generator(filepath:str):
         yield from reader
 
 
-def update_sum(counter, domain, count):
-    old_sum = counter.get(domain)
+def update_sum(counter:dict, field:str, count:str):
+    old_sum = counter.get(field)
     if old_sum:
         new_count = int(old_sum) + int(count)
     else:
         new_count = int(count)
-    counter.update({domain:new_count})
+    counter.update({field:new_count})
 
 
-def update_counter(counter_url, value):
+def update_counter(counter:Counter, value:str):
     if value:
-        counter_url.update([value])
+        counter.update([value])
 
 
-def get_row_data(row):
+def get_row_data(row:dict):
     domain = row.get("domain")
     subdomain = row.get("complete subdomain")
     youtube_channel = row.get("youtube channel link")
