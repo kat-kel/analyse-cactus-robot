@@ -48,8 +48,8 @@ The expected output is a file in the created directory `concatenated_data/` call
 
 Call the function `main.py` with the positional arguments of (1) the file path to the CSV created by cactus-robot and (2) the length of this file. It is recommended to get this integer from the xsv command `xsv count`.
 
-```
-$ python main.py PATH/TO/MASSIVE-CSV-FILE.csv LENGTH-OF-MASSIVE-CSV
+```python
+python main.py PATH/TO/MASSIVE-CSV-FILE.csv LENGTH-OF-MASSIVE-CSV
 ```
 The expected output is a created directory called `enriched_data/` and the file `enriched_INPUT-CSV-FILE.csv` as well as four supplementary files: `sum_domain_INPUT-CSV-FILE.csv`, `sum_facebook_INPUT-CSV-FILE.csv`, `sum_twitter_INPUT-CSV-FILE.csv`, and `sum_youtube_INPUT-CSV-FILE.csv`.
 

@@ -3,7 +3,7 @@ import os
 import click
 
 from parseCSV import parse_csv
-from write import write_results, write_summary
+from write import write_summary
 
 
 @click.command
@@ -30,7 +30,6 @@ def main(csv, count):
             counters = parse_csv(csv,count, outfile_name)
 
             # Output results
-            #write_results(results, title)
             write_summary(counters, out_directory, basename)
 
         except ValueError as err:

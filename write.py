@@ -1,9 +1,6 @@
 import csv
 import os
 from collections import Counter, namedtuple
-from tqdm.auto import tqdm
-
-from fieldnames import INPUT_FILE_FIELDNAMES
 
 
 Summary = namedtuple("Summary", ["outfile_prefix", "column_header", "count_of_urls", "sum_of_tweets"])
@@ -11,15 +8,6 @@ domain = Summary("sum_domains_", "domain", "domain", "sum_domains")
 facebook = Summary("sum_facebook_", "facebook group", "facebook_group", "sum_facebook")
 youtube = Summary("sum_youtube_", "youtube channel", "youtube_channel", "sum_youtube")
 twitter = Summary("sum_twitter_", "twitter account", "twitter_user", "sum_twitter")
-
-
-def write_results(results:dict, title:str):
-    fieldnames = INPUT_FILE_FIELDNAMES+["domain count", "subdomain count", "youtube channel count", "facebook group count", "twitter account count"]
-    with open(title, "w") as f:
-        writer = csv.DictWriter(f, fieldnames=fieldnames)
-        writer.writeheader()
-        loading_bar = tqdm(results, total=len(results), desc="Writing Enriched Dataset")
-        [writer.writerow(i) for i in loading_bar]
 
 
 def write_summary(counters, out_directory, basename):
