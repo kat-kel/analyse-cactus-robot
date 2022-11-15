@@ -1,0 +1,1 @@
+INPUT_FILE_FIELDNAMES = ["input", "count", "normalized url", "domain", "subdomain", "complete subdomain", "host name", "normalized host name", "twitter user", "youtube channel name", "youtube channel id", "youtube channel link", "facebook group name", "facebook group id"]
