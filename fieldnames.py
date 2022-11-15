@@ -1,3 +1,1 @@
 INPUT_FILE_FIELDNAMES = ["input", "count", "normalized url", "domain", "subdomain", "complete subdomain", "host name", "normalized host name", "twitter user", "youtube channel name", "youtube channel id", "youtube channel link", "facebook group name", "facebook group id"]
-COUNTER_FIELDNAMES = ["domain", "subdomain", "youtube_channel", "facebook_group", "twitter_user"]
-ADDITIONAL_OUTPUT_FIELDNAMES = ["domain count", "subdomain count", "youtube channel count", "facebook group count", "twitter account count"]
